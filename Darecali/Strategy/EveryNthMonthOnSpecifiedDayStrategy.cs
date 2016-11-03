@@ -37,7 +37,15 @@ namespace Darecali.Strategy
                 _currentDate = new DateTime(_currentDate.Year, _currentDate.Month, 1)
                     .AddMonths(_n);
 
-            while (_currentDate.Day != _day)
+            int dayOrMaxDayInMonth = Math.Min(_day, DateTime.DaysInMonth(_currentDate.Year, _currentDate.Month));
+            if (_currentDate.Day > dayOrMaxDayInMonth)
+            {
+                _currentDate = new DateTime(_currentDate.Year, _currentDate.Month, 1)
+                    .AddMonths(_n);
+            }
+
+            dayOrMaxDayInMonth = Math.Min(_day, DateTime.DaysInMonth(_currentDate.Year, _currentDate.Month));
+            while (_currentDate.Day < dayOrMaxDayInMonth)
                 _currentDate = _currentDate.AddDays(1);
             return _currentDate;
         }
