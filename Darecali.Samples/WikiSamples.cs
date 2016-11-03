@@ -137,6 +137,29 @@ namespace Darecali.Samples
                 Console.WriteLine(date.ToLongDateString());
         }
 
+        public static void RecurOnTheFirstDayOfEveryMonthFor5Months()
+        {
+            var startDate = new DateTime(2016, 11, 2);
+            var controller = Factory.CreateController(startDate, "M1,1", null, 5);
+            foreach (var date in controller)
+                Console.WriteLine(date.ToLongDateString());
+        }
+
+        public static void RecurOnThe29thOfOfEveryMonthFor4Months()
+        {
+            var startDate = new DateTime(2016, 11, 30);
+            var controller = Factory.CreateController(startDate, "M29,1", null, 4);
+            foreach (var date in controller)
+                Console.WriteLine(date.ToLongDateString());
+        }
+
+        public static void Test()
+        {
+            var controller = Factory.CreateController(DateTime.Today, "M" + DateTime.Today.Day, DateTime.Today.AddDays(32));
+            foreach (var date in controller)
+                Console.WriteLine(date.ToLongDateString());
+        }
+
         #endregion
     }
 }
